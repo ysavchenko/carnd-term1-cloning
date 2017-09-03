@@ -1,4 +1,4 @@
-#**Behavioral Cloning** 
+# **Behavioral Cloning** 
 
 **Behavioral Cloning Project**
 
@@ -25,9 +25,9 @@ The goals / steps of this project are the following:
 [training]: ./images/training.png "Training Loss"
 
 ## Rubric Points
-###Files Submitted & Code Quality
+### Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+#### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 
@@ -42,26 +42,26 @@ Additional files (not required by the rubric points):
 * [model\_track_2.h5](model_track_2.h5) model trained on track 2 data only 
 * [track1\_from_2.mp4](track1_from_2.mp4) video recorded of the model trained on track 2 steering on track 1 (speed 6mph), see the end of this report for the details
 
-####2. Submission includes functional code
+#### 2. Submission includes functional code
 Using the Udacity provided simulator and my [drive.py](drive.py) file, the car can be driven autonomously around the track by executing 
 
 ```sh
 python drive.py model.h5
 ```
 
-####3. Submission code is usable and readable
+#### 3. Submission code is usable and readable
 
 The [model.py](model.py) file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+#### 1. An appropriate model architecture has been employed
 
 My model consists of a convolution neural network with 5x5 filter sizes and depths between 8 and 32 (model.py lines 62-67). After 3 convolution and 3 max pooling layers I have 3 dense layers and then a final layer with a single output.
 
 All layers (except for the last one) have RELU activation logic to add non-linearity to the model. The data is normalized in the model using a Keras lambda layer (code lines 55 and 37-42). 
 
-####2. Attempts to reduce overfitting in the model
+#### 2. Attempts to reduce overfitting in the model
 
 The model contains 3 dropout layers in order to reduce overfitting (model.py lines 74, 76 and 78). Also reduce overfitting 3 max pooling layers after each convolution layer (lines 63, 65, and 67). 
 
@@ -69,19 +69,19 @@ The model was trained and validated on different data sets to ensure that the mo
 
 The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-####3. Model parameter tuning
+#### 3. Model parameter tuning
 
 The model used an Adam optimizer, so the learning rate was not tuned manually (model.py line 84).
 
-####4. Appropriate training data
+#### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. Project recommendations were to combine center driving with returning from the side back to the center of the road, but I decided to use slightly different approach. I did record several laps of central driving, but instead of recording recovery I've recorded one lap driving on the right edge of the road and one lap -- on the left side.
 
 For details about how ended up with this data, see the next section. 
 
-###Model Architecture and Training Strategy
+### Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+#### 1. Solution Design Approach
 
 Model architecture was inspired by LeNet and similar image recognition architectures. Basically it is a combination of several layers of convolution-maxpooling followed by several dense layers. I did try to use NVIDIA architecture as well as VGG-16, but the one I came up with showed good results and was quite qiuck to train, so I kept this architecture with some tweaks (discussed later).
 
@@ -93,7 +93,7 @@ Other things I've tuned were size of the crop image (I've tried to make is as sm
 
 Overfitting was not really a problem, a combination of max pooling after each convolution layer and dropout layers after each dense layer, which I've added from the start, prevented the model from overfitting.
 
-####2. Final Model Architecture
+#### 2. Final Model Architecture
 
 The final model architecture (model.py lines 48-81) consisted of a convolution neural network (3 convolution layers with 5x5 kernel size each followed by 2x2 max pooling layer, depth from 8 in the first layer to 32 in the last) followed by 3 dense layers (with width 512, 256 and 64 respectively) each followed by a dropout layer. And the final layer is a single node with linear activation (all other layers have a RELU activation).
 
@@ -101,7 +101,7 @@ Here is a visualization of the architecture:
 
 ![model]
 
-####3. Creation of the Training Set & Training Process
+#### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two-three laps on both tracks using center lane driving. Here is an example image of center lane driving (for both tracks):
 
@@ -145,9 +145,9 @@ As you can see, after epoch 10 validation loss stopped declining, so the final m
 ## Bonus Section
 While not the part of the rubric points, here are some things I wanted to include additionally to my report.
 
-###Final Model Performance
+### Final Model Performance
 
-####Model trained on both tracks
+#### Model trained on both tracks
 
 Below you can see two videos (YouTube versions with links to original below each video) of the model steering on track 1 and track 2. The model was sensitive to the vehicle speed, on both tracks my computer was not powerful enough to calculate steering on each frame, so model went off the track on high speed. Videos below are recorded at speed 20 on track 1 and speed 12 on track 2. When testing the final model please use speeds not higher than I used.
 
@@ -159,7 +159,7 @@ Original: [Track 1, Speed 20](track1_20.mp4)
 
 Original: [Track 2, Speed 12](track2_12.mp4)
 
-####Model trained on track 2
+#### Model trained on track 2
 
 As a way of displaying generalization abilities of the model I've also tried model trained on track 2 only to steer on track 1. Here is the video of how it performed:
 
